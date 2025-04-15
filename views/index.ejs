@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joke Generator</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>😂 Joke Generator</h1>
+
+    <form action="/" method="get">
+      <label for="category">Choose a category:</label>
+      <select name="category" id="category">
+        <option value="Any" <%= category === 'Any' ? 'selected' : '' %>>Any</option>
+        <option value="Programming" <%= category === 'Programming' ? 'selected' : '' %>>Programming</option>
+        <option value="Misc" <%= category === 'Misc' ? 'selected' : '' %>>Misc</option>
+        <option value="Dark" <%= category === 'Dark' ? 'selected' : '' %>>Dark</option>
+      </select>
+      <button type="submit">Get Joke</button>
+    </form>
+
+    <% if (joke) { %>
+      <div class="joke-box">
+        <% if (joke.type === 'single') {%>
+          <p><%= joke.joke %></p>
+        <% } else { %>
+          <p><strong><%= joke.setup %></strong></p>
+          <p><em><%= joke.delivery %></em></p>
+        <% } %>
+      </div>
+    <% } else if (error) {%>
+      <p class="error"><%= error %></p>
+    <% } %>
+  </div>
+</body>
+</html>
